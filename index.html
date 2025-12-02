@@ -1,100 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>❤️ 给你的浪漫代码</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>满屏美好祝福</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
-            line-height: 1.6;
-            -webkit-text-size-adjust: 100%;
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
         }
         
         .container {
-            max-width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 25px 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            padding: 20px;
         }
         
-        .heart-header {
+        /* 标题样式 */
+        .header {
             text-align: center;
-            margin-bottom: 30px;
-            animation: heartbeat 1.5s infinite;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 126, 95, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         
-        h1 {
-            color: #ff4d8d;
-            font-size: 28px;
-            margin: 15px 0;
+        .header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 祝福卡片样式 */
+        .blessings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .blessing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blessing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .blessing-card:nth-child(odd) {
+            border-top: 5px solid #36d1dc;
+        }
+        
+        .blessing-card:nth-child(even) {
+            border-top: 5px solid #5b86e5;
+        }
+        
+        .blessing-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff7e5f;
+        }
+        
+        .blessing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .blessing-card p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        /* 代码展示区 */
+        .code-section {
+            background: #2d3748;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+            color: #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .code-section h2 {
+            color: #ffd166;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
         }
         
         .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 18px;
-            border-radius: 12px;
-            margin: 20px 0;
+            background: #1a202c;
+            border-radius: 10px;
+            padding: 25px;
             overflow-x: auto;
             font-family: 'Courier New', monospace;
-            font-size: 15px;
-            border-left: 5px solid #ff4d8d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            border-left: 5px solid #ff7e5f;
+            margin: 20px 0;
+        }
+        
+        .code-comment {
+            color: #81e6d9;
+        }
+        
+        .code-keyword {
+            color: #ff6b9d;
+        }
+        
+        .code-string {
+            color: #ffd166;
+        }
+        
+        .code-function {
+            color: #5b86e5;
+        }
+        
+        /* 交互祝福 */
+        .interactive-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(90deg, #5b86e5, #36d1dc);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            color: white;
+        }
+        
+        .interactive-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .interactive-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #blessing-output {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px auto;
+            font-size: 1.3rem;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .btn {
-            display: block;
-            width: 90%;
-            margin: 20px auto;
-            padding: 18px;
-            background: linear-gradient(90deg, #ff4d8d, #ff6b9d);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 8px 25px rgba(255, 77, 141, 0.3);
-            transition: all 0.3s;
-        }
-        
-        .btn:active {
-            transform: scale(0.98);
-        }
-        
-        .wechat-tip {
-            background: #e6f7ff;
-            border: 1px solid #91d5ff;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 25px 0;
-            color: #0050b3;
-            font-size: 14px;
-        }
-        
-        /* 微信长按识别样式优化 */
-        .qr-container {
-            text-align: center;
-            padding: 20px;
             background: white;
-            border-radius: 15px;
-            margin: 25px 0;
+            color: #5b86e5;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .heart-rain {
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* 飘落效果 */
+        .falling-hearts {
             position: fixed;
             top: 0;
             left: 0;
@@ -104,242 +213,280 @@
             z-index: -1;
         }
         
-        .heart-rain span {
+        .heart {
             position: absolute;
-            display: block;
-            color: #ff4d8d;
-            font-size: 20px;
-            animation: fall linear infinite;
+            font-size: 24px;
+            color: #ff6b9d;
+            opacity: 0.6;
+            animation: falling linear infinite;
         }
         
-        @keyframes fall {
+        @keyframes falling {
             to {
                 transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #5b86e5;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(91, 134, 229, 0.2);
+            margin-top: 30px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .blessings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-block {
+                font-size: 0.9rem;
+                padding: 15px;
+            }
+            
+            #blessing-output {
+                font-size: 1.1rem;
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 飘落的心 -->
-    <div class="heart-rain" id="heartRain"></div>
+    <!-- 飘落的心形 -->
+    <div class="falling-hearts" id="fallingHearts"></div>
     
     <div class="container">
-        <div class="heart-header">
-            <div style="font-size: 60px;">❤️</div>
-            <h1>给特别的人</h1>
-            <p style="color: #666;">用代码表达的浪漫</p>
-        </div>
+        <!-- 页头 -->
+        <header class="header">
+            <h1><i class="fas fa-heart"></i> 满屏美好祝福 <i class="fas fa-heart"></i></h1>
+            <p>愿这些祝福如繁星点点，照亮你前行的道路；如春风拂面，温暖你每一个日子。</p>
+        </header>
         
-        <div class="wechat-tip">
-            💡 <strong>微信使用提示：</strong><br>
-            1. 点击下方按钮生成专属代码<br>
-            2. 长按代码区域可以复制<br>
-            3. 分享给TA表达心意
-        </div>
+        <!-- 祝福卡片网格 -->
+        <section class="blessings-grid">
+            <div class="blessing-card">
+                <i class="fas fa-sun"></i>
+                <h3>愿你的每一天都充满阳光</h3>
+                <p>愿阳光洒满你的窗台，温暖你的心房，照亮你前行的每一步。无论晴天雨天，心中总有阳光灿烂。</p>
+            </div>
+            
+            <div class="blessing-card">
+                <i class="fas fa-star"></i>
+                <h3>愿你的梦想如星辰闪耀</h3>
+                <p>愿你的梦想像夜空中最亮的星，指引你方向，给你力量。每一步努力，都让你离梦想更近一点。</p>
+            </div>
+            
+            <div class="blessing-card">
+                <i class="fas fa-laugh-beam"></i>
+                <h3>愿快乐常伴你左右</h3>
+                <p>愿微笑常驻你的脸庞，快乐填满你的心房。生活中的小确幸，汇聚成幸福的海洋。</p>
+            </div>
+            
+            <div class="blessing-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>愿健康平安守护你</h3>
+                <p>愿健康的身体成为你奋斗的基石，平安的守护让你无畏前行。身体是革命的本钱，健康是最大的财富。</p>
+            </div>
+            
+            <div class="blessing-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3>愿爱与温暖环绕你</h3>
+                <p>愿爱的光芒照亮你的生命，温暖的陪伴让你永不孤单。无论身在何处，爱永远是你最坚实的港湾。</p>
+            </div>
+            
+            <div class="blessing-card">
+                <i class="fas fa-rocket"></i>
+                <h3>愿你的未来无限可能</h3>
+                <p>愿你的未来如宇宙般浩瀚，充满无限可能。每一次尝试都是成长，每一次挑战都是机遇。</p>
+            </div>
+        </section>
         
-        <div class="code-block" id="codeDisplay">
-# 等待生成浪漫代码...
-# 点击下方按钮开始
-        </div>
+        <!-- 代码祝福区 -->
+        <section class="code-section">
+            <h2><i class="fas fa-code"></i> 代码里的祝福</h2>
+            <p style="text-align: center; margin-bottom: 25px; color: #a0aec0;">用程序员的方式表达最真挚的祝福</p>
+            
+            <div class="code-block">
+                <span class="code-comment"># 健康祝福算法</span><br>
+                <span class="code-keyword">def</span> <span class="code-function">wish_health</span>():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"强健的体魄 + 愉悦的心情 + 平衡的生活"</span><br><br>
+                
+                <span class="code-comment"># 快乐祝福函数</span><br>
+                <span class="code-keyword">def</span> <span class="code-function">wish_happiness</span>(today, everyday):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> today == <span class="code-string">"smile"</span> <span class="code-keyword">and</span> everyday == <span class="code-string">"smile"</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"无限快乐循环已启动！"</span><br><br>
+                
+                <span class="code-comment"># 成功祝福类</span><br>
+                <span class="code-keyword">class</span> <span class="code-function">SuccessWish</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.persistence = <span class="code-string">"永不放弃"</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.courage = <span class="code-string">"勇往直前"</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.wisdom = <span class="code-string">"明智选择"</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">achieve_goals</span>(<span class="code-keyword">self</span>):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"梦想成真！"</span><br>
+            </div>
+            
+            <div class="code-block">
+                <span class="code-comment">// 爱和友谊的JavaScript祝福</span><br>
+                <span class="code-keyword">const</span> loveAndFriendship = {<br>
+                &nbsp;&nbsp;wish: <span class="code-function">function</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"愿真爱常驻心间，友谊地久天长。"</span>;<br>
+                &nbsp;&nbsp;},<br>
+                &nbsp;&nbsp;components: [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"真诚"</span>, <span class="code-string">"理解"</span>, <span class="code-string">"信任"</span>, <span class="code-string">"支持"</span><br>
+                &nbsp;&nbsp;],<br>
+                &nbsp;&nbsp;duration: <span class="code-string">"forever"</span><br>
+                };<br><br>
+                
+                <span class="code-comment">// 执行祝福</span><br>
+                console.<span class="code-function">log</span>(loveAndFriendship.<span class="code-function">wish</span>());
+            </div>
+        </section>
         
-        <button class="btn" onclick="generateCode()">
-            💖 生成浪漫代码
-        </button>
+        <!-- 互动祝福区 -->
+        <section class="interactive-section">
+            <h2><i class="fas fa-magic"></i> 生成专属祝福</h2>
+            <p>点击按钮，收获一份随机生成的专属美好祝福。每一份祝福都独一无二，就像独特的你。</p>
+            
+            <div id="blessing-output">
+                您的专属祝福将在这里显示...
+            </div>
+            
+            <button class="btn" onclick="generateBlessing()">
+                <i class="fas fa-gift"></i> 生成新祝福
+            </button>
+            
+            <button class="btn" onclick="shareBlessing()" style="margin-left: 15px;">
+                <i class="fas fa-share-alt"></i> 分享祝福
+            </button>
+        </section>
         
-        <button class="btn" style="background:linear-gradient(90deg, #36d1dc, #5b86e5);" onclick="generateLoveLetter()">
-            ✉️ 生成情书
-        </button>
-        
-        <div class="qr-container">
-            <p>💝 分享这份浪漫给TA</p>
-            <div id="qrCode"></div>
-            <p style="font-size: 13px; color: #888; margin-top: 10px;">
-                截图分享或发送链接
-            </p>
-        </div>
-        
-        <div style="text-align: center; margin-top: 30px; color: #999; font-size: 14px;">
-            <p>❤️ 爱无边界，代码亦然</p>
-            <p>生成于 <span id="date"></span></p>
-        </div>
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>❤️ 祝福如星辰，虽远却永恒 ❤️</p>
+            <p>愿这些美好的话语陪伴你，温暖你，激励你</p>
+            <p>页面生成时间：<span id="current-time"></span></p>
+        </footer>
     </div>
 
     <script>
-        // 设置当前日期
-        const now = new Date();
-        document.getElementById('date').textContent = 
-            `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
-        
-        // 浪漫代码库
-        const codeSnippets = [
-            `# 心形函数 - 我们的爱
-import math
-
-def our_love(x, y):
-    """我们的爱，永远有解"""
-    heart = x**2 + (5*y/4 - math.sqrt(abs(x)))**2
-    return heart <= 1
-
-if our_love(0, 0):
-    print("❤️ 命中注定我爱你")`,
+        // 生成飘落的心形
+        function createFallingHearts() {
+            const container = document.getElementById('fallingHearts');
+            const heartCount = 30;
             
-            `# 无限循环的爱
-class MyLoveForYou:
-    def __init__(self):
-        self.depth = float('inf')  # 无限深
-        self.expiration = None     # 永不过期
-    
-    def __str__(self):
-        return "while True: love_you()"
-
-love = MyLoveForYou()
-print(f"我的承诺: {love}")`,
-            
-            `# 你是我的唯一
-my_world = {
-    "happiness": ["你"],
-    "memories": ["和你在一起"],
-    "future": ["有你的每一天"]
-}
-
-def meet_you():
-    for key in my_world:
-        if "你" not in my_world[key]:
-            my_world[key].append("你")
-
-print("我的世界因你而完整")`,
-            
-            `# 爱的算法
-def love_algorithm(you, me):
-    if you.happy and me.happy:
-        return "perfect_match"
-    else:
-        return love_algorithm(you, me)  # 递归直到完美
-
-print("我们是最佳匹配 ❤️")`
-        ];
-        
-        // 情书模板
-        const letters = [
-            `亲爱的：
-
-如果生活是一行代码
-你就是最完美的注释
-让一切有了意义
-
-if you in my_life:
-    print("世界如此美好")
-else:
-    print("等待你的出现")
-
-永远爱你的人
-❤️`,
-            
-            `致特别的你：
-
-我不擅长说情话
-但我懂代码
-
-while True:
-    think_of_you()
-    love_growing()
-    
-# 你是我永远不想修复的bug
-# 你是我最重要的依赖
-
-来自：一个程序员`,
-            
-            `给最重要的你：
-
-print("Hello World")  # 但我的世界从遇见你开始
-
-try:
-    live_without_you()
-except Heartache:
-    return to_you()
-
-# 我的代码里有你
-# 我的生活里全是你
-
-❤️ 爱你永远`
-        ];
-        
-        // 生成飘落的心
-        function createHearts() {
-            const rain = document.getElementById('heartRain');
-            for (let i = 0; i < 30; i++) {
-                const heart = document.createElement('span');
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
                 heart.innerHTML = '❤️';
                 heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
                 heart.style.opacity = Math.random() * 0.5 + 0.3;
-                rain.appendChild(heart);
+                container.appendChild(heart);
             }
         }
         
-        // 生成代码
-        function generateCode() {
-            const randomCode = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-            const codeDisplay = document.getElementById('codeDisplay');
-            codeDisplay.textContent = randomCode;
+        // 祝福语库
+        const blessings = [
+            "愿你眼中有星辰，心中有山海，以梦为马，不负韶华。",
+            "愿你的生活常温暖，日子总是温柔又闪光，未来可期。",
+            "愿你有前进一寸的勇气，亦有后退一尺的从容，平安喜乐。",
+            "愿你遍历山河，觉得人间值得；愿你乘风破浪，归来仍是少年。",
+            "愿你的世界永远充满阳光，不会有多余的悲伤，幸福绵长。",
+            "愿你有诗，有梦，有坦荡荡的远方，前程似锦，未来可期。",
+            "愿你一生努力，一生被爱，想要的都拥有，得不到的都释怀。",
+            "愿你所有的日子，都比不上明天的光辉，每一天都比前一天更美好。",
+            "愿你成为自己的太阳，无需凭借谁的光，独立而坚强。",
+            "愿你被这个世界温柔以待，躲不过的惊吓都只是一场虚惊，收到的欢喜从无空欢喜。",
+            "愿你往后路途，深情不再枉付，所得皆所愿，所遇皆所求。",
+            "愿你自强到无需有人宠有人惯，却依然幸运到有人宠有人惯。",
+            "愿你一生有山可靠，有树可栖，与心爱之人，春赏花，夏纳凉，秋登山，冬扫雪。",
+            "愿你遇良人，予你欢喜城，长歌暖浮生，幸福永相伴。",
+            "愿你所到之处，遍地阳光；愿你梦的远方，温暖为向，光芒万丈。"
+        ];
+        
+        // 生成随机祝福
+        function generateBlessing() {
+            const output = document.getElementById('blessing-output');
+            const randomIndex = Math.floor(Math.random() * blessings.length);
+            const randomBlessing = blessings[randomIndex];
             
-            // 添加复制提示
-            codeDisplay.style.position = 'relative';
-            if (!codeDisplay.querySelector('.copy-hint')) {
-                const hint = document.createElement('div');
-                hint.className = 'copy-hint';
-                hint.innerHTML = '📋 长按复制代码';
-                hint.style.cssText = `
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background: rgba(255,255,255,0.2);
-                    padding: 4px 8px;
-                    border-radius: 10px;
-                    font-size: 12px;
-                    color: #ccc;
-                `;
-                codeDisplay.appendChild(hint);
+            // 添加一些动态效果
+            output.style.opacity = 0;
+            setTimeout(() => {
+                output.innerHTML = `<i class="fas fa-quote-left" style="margin-right: 10px; color: rgba(255,255,255,0.7);"></i> ${randomBlessing} <i class="fas fa-quote-right" style="margin-left: 10px; color: rgba(255,255,255,0.7);"></i>`;
+                output.style.opacity = 1;
+            }, 300);
+            
+            // 添加一点视觉反馈
+            output.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                output.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // 分享祝福
+        function shareBlessing() {
+            const currentBlessing = document.getElementById('blessing-output').textContent;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '送给你的美好祝福',
+                    text: currentBlessing,
+                    url: window.location.href
+                })
+                .then(() => console.log('分享成功'))
+                .catch((error) => console.log('分享失败', error));
+            } else {
+                // 如果不支持Web Share API，则复制到剪贴板
+                navigator.clipboard.writeText(currentBlessing + "\n\n来自「满屏美好祝福」页面")
+                    .then(() => {
+                        alert('祝福语已复制到剪贴板，快去分享给重要的人吧！');
+                    })
+                    .catch(err => {
+                        console.error('复制失败: ', err);
+                    });
             }
         }
         
-        // 生成情书
-        function generateLoveLetter() {
-            const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-            const codeDisplay = document.getElementById('codeDisplay');
-            codeDisplay.textContent = randomLetter;
-            codeDisplay.style.whiteSpace = 'pre-wrap';
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            document.getElementById('current-time').textContent = now.toLocaleDateString('zh-CN', options);
         }
         
-        // 生成分享二维码
-        function generateQR() {
-            const qrDiv = document.getElementById('qrCode');
-            const pageUrl = window.location.href;
-            qrDiv.innerHTML = `
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(pageUrl)}&format=svg&bgcolor=FAD0C4&color=FF4D8D" 
-                     alt="分享二维码" 
-                     style="width: 150px; height: 150px; margin: 10px;">
-                <p style="font-size: 12px; color: #666; word-break: break-all; margin-top: 10px;">
-                    ${pageUrl}
-                </p>
-            `;
-        }
-        
-        // 初始化
+        // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
-            generateQR();
-            generateCode(); // 初始显示一个代码
+            createFallingHearts();
+            updateTime();
+            generateBlessing(); // 初始生成一个祝福
             
-            // 添加震动反馈（仅移动端）
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('touchstart', function() {
-                    if (navigator.vibrate) {
-                        navigator.vibrate(30);
-                    }
-                });
+            // 每秒更新时间
+            setInterval(updateTime, 1000);
+            
+            // 为卡片添加随机延迟动画
+            const cards = document.querySelectorAll('.blessing-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (index * 0.1) + 's';
             });
         });
     </script>
