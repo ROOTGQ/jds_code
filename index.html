@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>❤️ 给你的浪漫代码</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        .container {
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .heart-header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            color: #ff4d8d;
+            font-size: 28px;
+            margin: 15px 0;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            border-left: 5px solid #ff4d8d;
+        }
+        
+        .btn {
+            display: block;
+            width: 90%;
+            margin: 20px auto;
+            padding: 18px;
+            background: linear-gradient(90deg, #ff4d8d, #ff6b9d);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(255, 77, 141, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .wechat-tip {
+            background: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 25px 0;
+            color: #0050b3;
+            font-size: 14px;
+        }
+        
+        /* 微信长按识别样式优化 */
+        .qr-container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .heart-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart-rain span {
+            position: absolute;
+            display: block;
+            color: #ff4d8d;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 飘落的心 -->
+    <div class="heart-rain" id="heartRain"></div>
+    
+    <div class="container">
+        <div class="heart-header">
+            <div style="font-size: 60px;">❤️</div>
+            <h1>给特别的人</h1>
+            <p style="color: #666;">用代码表达的浪漫</p>
+        </div>
+        
+        <div class="wechat-tip">
+            💡 <strong>微信使用提示：</strong><br>
+            1. 点击下方按钮生成专属代码<br>
+            2. 长按代码区域可以复制<br>
+            3. 分享给TA表达心意
+        </div>
+        
+        <div class="code-block" id="codeDisplay">
+# 等待生成浪漫代码...
+# 点击下方按钮开始
+        </div>
+        
+        <button class="btn" onclick="generateCode()">
+            💖 生成浪漫代码
+        </button>
+        
+        <button class="btn" style="background:linear-gradient(90deg, #36d1dc, #5b86e5);" onclick="generateLoveLetter()">
+            ✉️ 生成情书
+        </button>
+        
+        <div class="qr-container">
+            <p>💝 分享这份浪漫给TA</p>
+            <div id="qrCode"></div>
+            <p style="font-size: 13px; color: #888; margin-top: 10px;">
+                截图分享或发送链接
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; color: #999; font-size: 14px;">
+            <p>❤️ 爱无边界，代码亦然</p>
+            <p>生成于 <span id="date"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // 设置当前日期
+        const now = new Date();
+        document.getElementById('date').textContent = 
+            `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+        
+        // 浪漫代码库
+        const codeSnippets = [
+            `# 心形函数 - 我们的爱
+import math
+
+def our_love(x, y):
+    """我们的爱，永远有解"""
+    heart = x**2 + (5*y/4 - math.sqrt(abs(x)))**2
+    return heart <= 1
+
+if our_love(0, 0):
+    print("❤️ 命中注定我爱你")`,
+            
+            `# 无限循环的爱
+class MyLoveForYou:
+    def __init__(self):
+        self.depth = float('inf')  # 无限深
+        self.expiration = None     # 永不过期
+    
+    def __str__(self):
+        return "while True: love_you()"
+
+love = MyLoveForYou()
+print(f"我的承诺: {love}")`,
+            
+            `# 你是我的唯一
+my_world = {
+    "happiness": ["你"],
+    "memories": ["和你在一起"],
+    "future": ["有你的每一天"]
+}
+
+def meet_you():
+    for key in my_world:
+        if "你" not in my_world[key]:
+            my_world[key].append("你")
+
+print("我的世界因你而完整")`,
+            
+            `# 爱的算法
+def love_algorithm(you, me):
+    if you.happy and me.happy:
+        return "perfect_match"
+    else:
+        return love_algorithm(you, me)  # 递归直到完美
+
+print("我们是最佳匹配 ❤️")`
+        ];
+        
+        // 情书模板
+        const letters = [
+            `亲爱的：
+
+如果生活是一行代码
+你就是最完美的注释
+让一切有了意义
+
+if you in my_life:
+    print("世界如此美好")
+else:
+    print("等待你的出现")
+
+永远爱你的人
+❤️`,
+            
+            `致特别的你：
+
+我不擅长说情话
+但我懂代码
+
+while True:
+    think_of_you()
+    love_growing()
+    
+# 你是我永远不想修复的bug
+# 你是我最重要的依赖
+
+来自：一个程序员`,
+            
+            `给最重要的你：
+
+print("Hello World")  # 但我的世界从遇见你开始
+
+try:
+    live_without_you()
+except Heartache:
+    return to_you()
+
+# 我的代码里有你
+# 我的生活里全是你
+
+❤️ 爱你永远`
+        ];
+        
+        // 生成飘落的心
+        function createHearts() {
+            const rain = document.getElementById('heartRain');
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                rain.appendChild(heart);
+            }
+        }
+        
+        // 生成代码
+        function generateCode() {
+            const randomCode = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+            const codeDisplay = document.getElementById('codeDisplay');
+            codeDisplay.textContent = randomCode;
+            
+            // 添加复制提示
+            codeDisplay.style.position = 'relative';
+            if (!codeDisplay.querySelector('.copy-hint')) {
+                const hint = document.createElement('div');
+                hint.className = 'copy-hint';
+                hint.innerHTML = '📋 长按复制代码';
+                hint.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: rgba(255,255,255,0.2);
+                    padding: 4px 8px;
+                    border-radius: 10px;
+                    font-size: 12px;
+                    color: #ccc;
+                `;
+                codeDisplay.appendChild(hint);
+            }
+        }
+        
+        // 生成情书
+        function generateLoveLetter() {
+            const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+            const codeDisplay = document.getElementById('codeDisplay');
+            codeDisplay.textContent = randomLetter;
+            codeDisplay.style.whiteSpace = 'pre-wrap';
+        }
+        
+        // 生成分享二维码
+        function generateQR() {
+            const qrDiv = document.getElementById('qrCode');
+            const pageUrl = window.location.href;
+            qrDiv.innerHTML = `
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(pageUrl)}&format=svg&bgcolor=FAD0C4&color=FF4D8D" 
+                     alt="分享二维码" 
+                     style="width: 150px; height: 150px; margin: 10px;">
+                <p style="font-size: 12px; color: #666; word-break: break-all; margin-top: 10px;">
+                    ${pageUrl}
+                </p>
+            `;
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            generateQR();
+            generateCode(); // 初始显示一个代码
+            
+            // 添加震动反馈（仅移动端）
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('touchstart', function() {
+                    if (navigator.vibrate) {
+                        navigator.vibrate(30);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
